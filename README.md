@@ -49,4 +49,4 @@ print qq=Did you say "Hello?"\n=;
 To execute the code, just run 'hp.exe <filename>' on command line. Or if you use windows, just add '.hp' file extension at the end of your filename and associate the extension with hashpling. So later when you double click the dot-hp file, it will execute automatically. No execution permission is required.
     
 # compiling
-Hashpling only use standard C library (stdio and string). Just do standard compilation using your C compiler eg, 'gcc -o hp.exe hashpling.c'.
+Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Just do standard compilation using your C compiler eg, 'gcc -o hp.exe hashpling.c'.
