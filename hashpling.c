@@ -49,6 +49,7 @@ int main(int argc, char **argv) {
 		system(cmd);
 	} else {
 		printf("%s: File \"%s\" is not in shebang format.\n",argv[0],argv[1]);
+		return 1;
 	}
 	return 0;
 }
