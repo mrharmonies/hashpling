@@ -1,5 +1,7 @@
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 #define _HPVERSION_ "0.1"
 
 int main(int argc, char **argv) {
@@ -30,17 +32,24 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 	char s[800];
+	int l;
+	while (1) {
+		s[l]=fgetc(f);
+		if (s[l]=='\x0d'||s[l]=='\x0a') 
+		{
+			s[l]='\0';
+			break;
+		}
+		l++;
+	}
 
-	fgets(s,sizeof(s),f);
 	fclose(f);
 
 	char* launcher[800],cmd[800],lastchar;
 	int c;
 
 	if(s[0]=='#' && s[1]=='!') {
-		s[strlen(&s)-1]='\0';
 		strncpy(launcher,s+2,strlen(s));
-		launcher[strlen(launcher)]='\0';
 		strcpy(cmd,launcher);
 		strcat(cmd," ");
 		strcat(cmd,"\"");
