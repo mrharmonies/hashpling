@@ -50,3 +50,7 @@ To execute the code, just run 'hp.exe <filename>' on command line. Or if you use
     
 # compiling
 Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Just do standard compilation using your C compiler eg, 'gcc -o hp.exe hashpling.c'.
+
+# screenshot
+![](https://drive.google.com/uc?id=1JpujgvlmMjUqC9DNQqDBGrQOLRq6zosO)
+![](https://drive.google.com/uc?id=143BAvDgNTuEiYN8SP24b5y-AzvZz6Zm3)
