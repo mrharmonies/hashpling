@@ -4,6 +4,8 @@
 
 #define _HPVERSION_ "0.2"
 
+#define _BUFFER_ 800
+
 int main(int argc, char **argv) {
 	FILE *f;
 
@@ -31,7 +33,7 @@ int main(int argc, char **argv) {
 		printf("%s: File \"%s\" failed to be opened. Sorry.\n",argv[0],argv[1]);
 		return 1;
 	}
-	char s[800];
+	char s[_BUFFER_];
 	int l;
 	while (1) {
 		s[l]=fgetc(f);
@@ -45,8 +47,7 @@ int main(int argc, char **argv) {
 
 	fclose(f);
 
-	char* launcher[800],cmd[800],lastchar;
-	int c;
+	char* launcher[_BUFFER_],cmd[_BUFFER_],lastchar;
 
 	if(s[0]=='#' && s[1]=='!') { // if code is in shebang format
 		strncpy(launcher,s+2,strlen(s));
