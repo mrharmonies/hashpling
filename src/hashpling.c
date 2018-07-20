@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define _HPVERSION_ "0.1"
+#define _HPVERSION_ "0.2"
 
 int main(int argc, char **argv) {
 	FILE *f;
@@ -35,9 +35,9 @@ int main(int argc, char **argv) {
 	int l;
 	while (1) {
 		s[l]=fgetc(f);
-		if (s[l]=='\x0d'||s[l]=='\x0a') 
+		if (s[l]=='\x0d'||s[l]=='\x0a') // look for CR and LF, which ever comes first. 
 		{
-			s[l]='\0';
+			s[l]='\0'; // last char is \0
 			break;
 		}
 		l++;
@@ -48,15 +48,15 @@ int main(int argc, char **argv) {
 	char* launcher[800],cmd[800],lastchar;
 	int c;
 
-	if(s[0]=='#' && s[1]=='!') {
+	if(s[0]=='#' && s[1]=='!') { // if code is in shebang format
 		strncpy(launcher,s+2,strlen(s));
-		strcpy(cmd,launcher);
+		strcpy(cmd,launcher); 
 		strcat(cmd," ");
-		strcat(cmd,"\"");
-		strcat(cmd,argv[1]);
+		strcat(cmd,"\""); 
+		strcat(cmd,argv[1]);  
 		strcat(cmd,"\"");
 		system(cmd);
-	} else {
+	} else { // else if not in shebang format
 		printf("%s: File \"%s\" is not in shebang format.\n",argv[0],argv[1]);
 		return 1;
 	}
