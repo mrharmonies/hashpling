@@ -2,7 +2,9 @@
 hashpling allows you to **use shebang on non-unix platform**, for example, on Windows or DOS. For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).
 
 # usage
-Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. For example:
+Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. 
+
+To execute the code, just run 'hp.exe *filename*' on command line. Or if you use windows, just add '.hp' file extension at the end of your filename and associate the extension with hashpling program. So later when you double click the dot-hp file, it will execute automatically. No execution permission is required. For example:
 
 ![](https://drive.google.com/uc?id=19t10vXhu90PSn2uAnV0vr08ABcM79UPJ)
 
@@ -36,13 +38,26 @@ begin
   for i:=0 to ParamCount do writeln(ParamStr(i));
 end.
 ```
-Even using '/usr/bin/env' also works!
+Even using '/usr/bin/env' works!
 ```
 #!/usr/bin/env bash
 echo "Hello world"
 ```
-To execute the code, just run 'hp.exe *filename*' on command line. Or if you use windows, just add '.hp' file extension at the end of your filename and associate the extension with hashpling program. So later when you double click the dot-hp file, it will execute automatically. No execution permission is required.
-    
+Passing arguments to script is as usual, for example executing this script with "**hp namearg.sh _audrey hepburn_**" will produce this output
+```
+$ hp namearg.sh audrey hepburn
+My first name is audrey
+My surname is hepburn
+Total number of arguments is 2
+```
+and here is the bash script (namearg.sh)
+```
+#!/bin/bash
+# example of using arguments to a script
+echo "My first name is $1"
+echo "My surname is $2"
+echo "Total number of arguments is $#" 
+```
 # compiling
 Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Change directory to "src" folder and just do standard compilation using your C compiler eg, **'gcc -w -o hp.exe hashpling.c'**. As for now, I'm able to compile hashpling on **Windows, DOS, macOS and Ubuntu**.
 
