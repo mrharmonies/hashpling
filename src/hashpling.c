@@ -57,10 +57,9 @@ int main(int argc, char **argv) {
 
 	if (!strcmp(argv[1],"-h")) {
 		printf("Hashpling v%s.\n",_HPVERSION_);
-		printf("To use, run \"%s [filename]\" in command line.\n",argv[0]);
-		printf("Shebang format is #!(interpreter) [arguments].\n");
-		printf("Interpreter can be absolute path or a program\n");
-		printf("name registered in PATH environment variable.\n");
+		printf("To use, run \"%s <filename> [arg1 arg2 ..]\" in command line.\n",argv[0]);
+		printf("Shebang format is #!(interpreter) [interpreter arguments].\n");
+		printf("(interpreter) can be absolute path to an interpreter or just an interpreter name if its already in PATH variable.\n");
 		return 0;
 	}
 	
