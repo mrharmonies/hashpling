@@ -34,7 +34,27 @@ int main(int argc, char **argv) {
 	}
 
 	if (!strcmp(argv[1],"-v")) {
-		printf("Hashpling v%s. Made with love by Muhamad Khalid Muzappa Yakub.\nhttp://mrharmonies.blogspot.com\n",_HPVERSION_);
+		printf("Hashpling v%s. Made with love by Muhamad Khalid Muzappa Yakub. For license info, execute using '-l' option\n",_HPVERSION_);
+		return 0;
+	}
+	
+	if (!strcmp(argv[1],"-l")) {
+		printf("Copyright (C) 2018 Mohd Kholid Yaacob (mrharmonies.blogspot.com)\n\n");
+
+		printf("This source is free software; you can redistribute it and/or modify it under\n");
+		printf("the terms of the GNU General Public License as published by the Free\n");
+		printf("Software Foundation; either version 2 of the License, or (at your option)\n");
+		printf("any later version.\n\n");
+
+		printf("This code is distributed in the hope that it will be useful, but WITHOUT ANY\n");
+		printf("WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS\n");
+		printf("FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more\n");
+		printf("details.\n\n");
+
+		printf("A copy of the GNU General Public License is available on the World Wide Web\n");
+		printf("at <http://www.gnu.org/copyleft/gpl.html>. You can also obtain it by writing\n");
+		printf("to the Free Software Foundation, Inc., 51 Franklin Street - Fifth Floor,\n");
+		printf("Boston, MA 02110-1335, USA.\n");
 		return 0;
 	}
 
