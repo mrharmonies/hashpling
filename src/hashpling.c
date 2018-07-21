@@ -1,16 +1,13 @@
 /*
   Copyright (C) 2018 Mohd Kholid Yaacob (mrharmonies.blogspot.com)
-
   This source is free software; you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
   Software Foundation; either version 2 of the License, or (at your option)
   any later version.
-
   This code is distributed in the hope that it will be useful, but WITHOUT ANY
   WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
   FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
   details.
-
   A copy of the GNU General Public License is available on the World Wide Web
   at <http://www.gnu.org/copyleft/gpl.html>. You can also obtain it by writing
   to the Free Software Foundation, Inc., 51 Franklin Street - Fifth Floor,
@@ -66,14 +63,27 @@ int main(int argc, char **argv) {
 		printf("name registered in PATH environment variable.\n");
 		return 0;
 	}
+	
+	char optionstr[_BUFFER_]="";
+	
+	if(argc>1) { 
+		for (int i=2;i<argc;i++) {
+			strcat(optionstr, " ");	
+			strcat(optionstr,"\"");
+			strcat(optionstr, argv[i]);
+			strcat(optionstr,"\"");
+		}
+	}
 
 	f=fopen(argv[1],"r");
 	if (f==0) {
 		printf("%s: File \"%s\" failed to be opened. Sorry.\n",argv[0],argv[1]);
 		return 1;
 	}
-	char s[_BUFFER_];
+	
+	char s[_BUFFER_]="";
 	int l;
+	
 	while (1) {
 		s[l]=fgetc(f);
 		if (s[l]=='\x0d'||s[l]=='\x0a') // look for CR and LF, which ever comes first. 
@@ -86,7 +96,7 @@ int main(int argc, char **argv) {
 
 	fclose(f);
 
-	char* launcher[_BUFFER_],cmd[_BUFFER_],lastchar;
+	char* launcher[_BUFFER_],cmd[_BUFFER_];
 
 	if(s[0]=='#' && s[1]=='!') { // if code is in shebang format
 		strncpy(launcher,s+2,strlen(s));
@@ -95,6 +105,7 @@ int main(int argc, char **argv) {
 		strcat(cmd,"\""); 
 		strcat(cmd,argv[1]);  
 		strcat(cmd,"\"");
+		strcat(cmd,optionstr); // pass options to interpreter
 		system(cmd);
 	} else { // else if not in shebang format
 		printf("%s: File \"%s\" is not in shebang format.\n",argv[0],argv[1]);
