@@ -16,3 +16,8 @@ Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Change d
 
 # more screenshot
 ![](https://drive.google.com/uc?id=143BAvDgNTuEiYN8SP24b5y-AzvZz6Zm3)
+
+# download precompiled binaries (unmaintained)
++ Windows (Mingw32) - <https://goo.gl/3AzZu2>
++ macOS High Sierra (clang) - <https://goo.gl/oeTA15>
++ DOS/DOSBOX (djgpp) - <https://goo.gl/NdztRB>
