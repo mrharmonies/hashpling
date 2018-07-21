@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define _HPVERSION_ "0.2"
+#define _HPVERSION_ "0.5"
 
 #define _BUFFER_ 800
 
