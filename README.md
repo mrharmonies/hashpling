@@ -1,5 +1,8 @@
 # hashpling
-hashpling allows you to **use shebang on non-unix platform**, for example, on Windows or DOS. Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, perl, lua, nodejs, ruby, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. For example:
+hashpling allows you to **use shebang on non-unix platform**, for example, on Windows or DOS. For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).
+
+# usage
+Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. For example:
 
 ![](https://drive.google.com/uc?id=19t10vXhu90PSn2uAnV0vr08ABcM79UPJ)
 
@@ -32,6 +35,11 @@ var
 begin
   for i:=0 to ParamCount do writeln(ParamStr(i));
 end.
+```
+Even using '/usr/bin/env' also works!
+```
+#!/usr/bin/env bash
+echo "Hello world"
 ```
 To execute the code, just run 'hp.exe *filename*' on command line. Or if you use windows, just add '.hp' file extension at the end of your filename and associate the extension with hashpling program. So later when you double click the dot-hp file, it will execute automatically. No execution permission is required.
     
