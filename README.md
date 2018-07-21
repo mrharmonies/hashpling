@@ -3,11 +3,35 @@ hashpling allows you to **use shebang on non-unix platform**, for example, on Wi
 
 ![](https://drive.google.com/uc?id=19t10vXhu90PSn2uAnV0vr08ABcM79UPJ)
 
-if the interpreter in already in the folder registered in PATH environment variable, then full path is not required, for example:
+Example using python interpreter located in "c:\python\bin\python32", append the path right after shebang:
+```
+#!c:\python\bin\python32
+kmh = int(raw_input("Enter km/h: "))
+mph =  0.6214 * kmh
+print "Speed:", kmh, "KM/H = ", mph, "MPH"
+```
+if the interpreter in already in the folder registered in PATH environment variable, then full path is not required, in this case, perl:
 ```
 #!perl
 print "Hello, world!\n";
 print qq=Did you say "Hello?"\n=;
+```
+Using hashpling on macOS, linux or other UNIX variant? Shebang is already in the heart of every UNIX system, but just to show hashpling works everywhere, heres another example that works on UNIX-like platform:
+```
+#!/usr/bin/python
+friends = ['john', 'pat', 'gary', 'michael']
+for i, name in enumerate(friends):
+    print "iteration {iteration} is {name}".format(iteration=i, name=name)
+```
+```
+#!instantfpc
+// instantfpc folder is registered in PATH environment variables, so full path is not required.
+program params;
+var
+  i: Integer;
+begin
+  for i:=0 to ParamCount do writeln(ParamStr(i));
+end.
 ```
 To execute the code, just run 'hp.exe *filename*' on command line. Or if you use windows, just add '.hp' file extension at the end of your filename and associate the extension with hashpling program. So later when you double click the dot-hp file, it will execute automatically. No execution permission is required.
     
