@@ -80,8 +80,8 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 	
-	char s[_BUFFER_]="";
-	int l;
+	char s[_BUFFER_];
+	int l=0;
 	
 	while (1) {
 		s[l]=fgetc(f);
