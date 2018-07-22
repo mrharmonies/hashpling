@@ -58,6 +58,21 @@ echo "My first name is $1"
 echo "My surname is $2"
 echo "Total number of arguments is $#" 
 ```
+hashpling can also **run on a http server**. In this example I'm using **[tinyweb](https://www.ritlabs.com/en/products/tinyweb/)**. After placing this Lua script (named x.hp) in "**cgi-bin**":
+```
+#!C:\www\root\cgi-bin\lua53
+
+print("Content-type: text/html\n\n");
+print("<HTML>\n");
+print( "<HEAD><TITLE>hashpling on HTTP server!</TITLE></HEAD>\n");
+print("<BODY>\n");
+print("<H1>hashpling running on HTTP server!</H1><HR>\n");
+print("</BODY></HTML>\n");
+```
+I can go to **http://localhost/cgi-bin/x.hp** in my favorite browser and get this result:
+
+![](https://drive.google.com/uc?id=1mayTKWP1ytebl8T2tfk-WzzHWMEPXsQs)
+
 # compiling
 Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Change directory to "src" folder and just do standard compilation using your C compiler eg, **'gcc -w -o hp.exe hashpling.c'**. As for now, I'm able to compile hashpling on **Windows, DOS, macOS and Ubuntu**.
 
