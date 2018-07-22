@@ -2,20 +2,20 @@
 hashpling allows you to **use shebang on non-unix platform**, (eg. on Windows 10, Windows XP or on MSDOS). For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).
 
 # usage
-Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. 
+Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. To execute the code, just run 'hp.exe *filename*' on command line.
 
-To execute the code, just run 'hp.exe *filename*' on command line. Or if you use windows, just add '.hp' file extension at the end of your filename and associate the extension with hashpling program. So later when you double click the dot-hp file, it will execute automatically. No execution permission is required. For example:
+Tip: If you use windows, just add '.hp' file extension at the end of your filename and associate the extension with hashpling program. So later when you double click the dot-hp file, it will execute automatically. No execution permission is required. For example:
 
 ![](https://drive.google.com/uc?id=19t10vXhu90PSn2uAnV0vr08ABcM79UPJ)
 
-Example using python interpreter located in "c:\python\bin\python32", append the path right after shebang:
+Example using python interpreter located in "c:\python\bin\python32", append the path right after shebang, like this "**#!c:\python\bin\python32.exe**":
 ```
-#!c:\python\bin\python32
+#!c:\python\bin\python32.exe
 kmh = int(raw_input("Enter km/h: "))
 mph =  0.6214 * kmh
 print "Speed:", kmh, "KM/H = ", mph, "MPH"
 ```
-if the interpreter in already in the folder registered in PATH environment variable, then full path is not required, in this case, perl:
+If the interpreter in already in the folder registered in PATH environment variable, then full path is not required, in this case, just use "**#!perl**":
 ```
 #!perl
 print "Hello, world!\n";
@@ -38,7 +38,7 @@ begin
   for i:=0 to ParamCount do writeln(ParamStr(i));
 end.
 ```
-Even using '/usr/bin/env' works!
+Even using '**/usr/bin/env**' works!
 ```
 #!/usr/bin/env bash
 echo "Hello world"
@@ -65,7 +65,7 @@ Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Change d
 ![](https://drive.google.com/uc?id=143BAvDgNTuEiYN8SP24b5y-AzvZz6Zm3)
 
 # binaries
-Download precompiled binaries (unmaintained)
+I recommend compiling hashpling from source. However you can download precompiled binaries (unmaintained) here:
 + Windows (Mingw32) - <https://goo.gl/3AzZu2>
 + macOS High Sierra (clang) - <https://goo.gl/oeTA15>
 + DOS/DOSBOX (djgpp) - <https://goo.gl/NdztRB>
