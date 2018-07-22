@@ -61,14 +61,14 @@ echo "Total number of arguments is $#"
 # compiling
 Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Change directory to "src" folder and just do standard compilation using your C compiler eg, **'gcc -w -o hp.exe hashpling.c'**. As for now, I'm able to compile hashpling on **Windows, DOS, macOS and Ubuntu**.
 
+# binaries
+I recommend compiling hashpling from source. Compiling hashpling from source is easy if you already have C compiler installed in your system (see "compiling" part above). However you can download precompiled binaries (**unmaintained**) here:
++ **Windows (Mingw32)** - <https://goo.gl/3AzZu2>
++ **macOS High Sierra (clang)** - <https://goo.gl/oeTA15>
++ **DOS/DOSBOX (djgpp)** - <https://goo.gl/NdztRB>
+
 # more screenshot
 ![](https://drive.google.com/uc?id=143BAvDgNTuEiYN8SP24b5y-AzvZz6Zm3)
-
-# binaries
-I recommend compiling hashpling from source. However you can download precompiled binaries (unmaintained) here:
-+ Windows (Mingw32) - <https://goo.gl/3AzZu2>
-+ macOS High Sierra (clang) - <https://goo.gl/oeTA15>
-+ DOS/DOSBOX (djgpp) - <https://goo.gl/NdztRB>
 
 # license
   Copyright (C) 2018 Mohd Kholid Yaacob (<http://mrharmonies.blogspot.com>)
