@@ -74,7 +74,7 @@ I can go to **http://localhost/cgi-bin/x.hp** in my favorite browser and get thi
 ![](https://drive.google.com/uc?id=1mayTKWP1ytebl8T2tfk-WzzHWMEPXsQs)
 
 # compiling
-Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Change directory to "src" folder and just do standard compilation using your C compiler eg, **'gcc -w -o hp.exe hashpling.c'**. This compilation will produce **one self-contained (no dependency)** and **portable executable**. As for now, I'm able to compile hashpling on **Windows, DOS, macOS and Ubuntu**.
+Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Change directory to "src" folder and just do standard compilation using your C compiler eg, **'gcc -w -o hp.exe hashpling.c'**. This compilation will produce **one self-contained** executable. The executable requires **no dependency**, so its very portable. As for now, I'm able to compile hashpling on **Windows, DOS, macOS and Ubuntu**.
 
 # binaries
 I recommend compiling hashpling from source. Compiling hashpling from source is easy if you already have C compiler installed in your system (see "compiling" part above). However you can download precompiled binaries (**unmaintained**) here:
