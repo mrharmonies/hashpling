@@ -2,7 +2,7 @@
 hashpling allows you to **use shebang on non-unix platform**, (eg. on Windows 10, Windows XP or on MSDOS). For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).
 
 # usage
-Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. To execute the code, just run **'hp.exe *filename*'** on command line.
+Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, gnuplot, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. To execute the code, just run **'hp.exe *filename*'** on command line.
 
 ![](https://drive.google.com/uc?id=19t10vXhu90PSn2uAnV0vr08ABcM79UPJ)
 
