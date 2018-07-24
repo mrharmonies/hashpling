@@ -63,10 +63,11 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 	
-	char optionstr[_BUFFER_]="";
-	
+	char *optionstr=malloc(sizeof(char) * _BUFFER_);
+	int i;
+	strcpy(optionstr,"");
 	if(argc>1) { 
-		for (int i=2;i<argc;i++) {
+		for (i=2;i<argc;i++) {
 			strcat(optionstr, " ");	
 			strcat(optionstr,"\"");
 			strcat(optionstr, argv[i]);
@@ -79,34 +80,41 @@ int main(int argc, char **argv) {
 		printf("%s: File \"%s\" failed to be opened. Sorry.\n",argv[0],argv[1]);
 		return 1;
 	}
-	
-	char s[_BUFFER_];
+
+	char *s=malloc(sizeof(char) * _BUFFER_);
 	int l=0;
 	
 	while (1) {
 		s[l]=fgetc(f);
-		if (s[l]=='\x0d'||s[l]=='\x0a') // look for CR and LF, which ever comes first. 
+		if (s[l]=='\x0d'||s[l]=='\x0a') 
 		{
-			s[l]='\0'; // last char is \0
+			s[l]='\0'; 
 			break;
 		}
 		l++;
 	}
 
 	fclose(f);
+	free(f);
 
-	char* launcher[_BUFFER_],cmd[_BUFFER_];
+	char *launcher=malloc(sizeof(char) * _BUFFER_);
+	char *cmd=malloc(sizeof(char) * _BUFFER_);
 
-	if(s[0]=='#' && s[1]=='!') { // if code is in shebang format
+	if(s[0]=='#' && s[1]=='!') { 
 		strncpy(launcher,s+2,strlen(s));
 		strcpy(cmd,launcher); 
 		strcat(cmd," ");
 		strcat(cmd,"\""); 
 		strcat(cmd,argv[1]);  
 		strcat(cmd,"\"");
-		strcat(cmd,optionstr); // pass options to interpreter
-		system(cmd);
-	} else { // else if not in shebang format
+		strcat(cmd,optionstr); 
+		/*system(cmd);*/
+		printf("command is %s",cmd);
+		free(s);
+		free(cmd);
+		free(launcher);
+		free(optionstr);
+	} else { 
 		printf("%s: File \"%s\" is not in shebang format.\n",argv[0],argv[1]);
 		return 1;
 	}
