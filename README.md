@@ -58,7 +58,11 @@ echo "My first name is $1"
 echo "My surname is $2"
 echo "Total number of arguments is $#" 
 ```
-hashpling can also **run on a http server**. In this example I'm using **[tinyweb](https://www.ritlabs.com/en/products/tinyweb/)**. After placing this Lua script (named x.hp) in "**cgi-bin**":
+Hashpling also forward **exit code** from the interpreter. So if you exit with certain exit code, you wont lose that data.
+
+![](https://drive.google.com/uc?id=1Q28gQPuiVlhdFpBzMGR9VTxNswIHkhPg)
+
+Hashpling can also **run on a http server**. In this example I'm using **[tinyweb](https://www.ritlabs.com/en/products/tinyweb/)**. After placing this Lua script (named x.hp) in "**cgi-bin**":
 ```
 #!C:\www\root\cgi-bin\lua53
 
