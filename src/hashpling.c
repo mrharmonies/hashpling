@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define _HPVERSION_ "0.5"
+#define _HPVERSION_ "0.7"
 
 #define _BUFFER_ 800
 
@@ -99,6 +99,7 @@ int main(int argc, char **argv) {
 
 	char *launcher=malloc(sizeof(char) * _BUFFER_);
 	char *cmd=malloc(sizeof(char) * _BUFFER_);
+	int cmdreturn=0;
 
 	if(s[0]=='#' && s[1]=='!') { 
 		strncpy(launcher,s+2,strlen(s));
@@ -108,8 +109,7 @@ int main(int argc, char **argv) {
 		strcat(cmd,argv[1]);  
 		strcat(cmd,"\"");
 		strcat(cmd,optionstr); 
-		/*system(cmd);*/
-		printf("command is %s",cmd);
+		cmdreturn=system(cmd);
 		free(s);
 		free(cmd);
 		free(launcher);
@@ -118,5 +118,5 @@ int main(int argc, char **argv) {
 		printf("%s: File \"%s\" is not in shebang format.\n",argv[0],argv[1]);
 		return 1;
 	}
-	return 0;
+	return cmdreturn;
 }
