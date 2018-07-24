@@ -1,5 +1,5 @@
 # hashpling
-hashpling allows you to **use shebang on non-unix platform**, (eg. on Windows 10, Windows XP or on MSDOS). For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).
+Hashpling allows you to **use shebang on non-unix platform**, (eg. on Windows 10, Windows XP or on MSDOS). For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)). Hashpling is **very fast** and **portable** because it is written in **C** and following **ANSI C** language dialect. 
 
 # usage
 Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, gnuplot, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. To execute the code, just run **'hp.exe *filename*'** on command line.
@@ -74,13 +74,13 @@ I can go to **http://localhost/cgi-bin/x.hp** in my favorite browser and get thi
 ![](https://drive.google.com/uc?id=1mayTKWP1ytebl8T2tfk-WzzHWMEPXsQs)
 
 # compiling
-Hashpling only use standard C library (stdio.h, stdlib.h and string.h). Change directory to "src" folder and just do standard compilation using your C compiler eg, **'gcc -w -o hp.exe hashpling.c'**. This compilation will produce **one self-contained** executable. The executable requires **no dependency**, so its very portable. As for now, I'm able to compile hashpling on **Windows, DOS, macOS and Ubuntu**.
+Hashpling is written in **C** and following **ANSI C** language dialect which makes it very fast and portable. Hashpling only use standard C library (stdio.h, stdlib.h and string.h). To compile, change directory to "src" folder and just do standard compilation using your C compiler eg, **'gcc -ansi -o hp.exe hashpling.c'**. This compilation will produce **one self-contained** executable. The executable requires **no dependency**, so its very **portable**. Compilation is tested sucessfully on **Windows, DOS, macOS and Ubuntu**.
 
 # binaries
 I recommend compiling hashpling from source. Compiling hashpling from source is easy if you already have C compiler installed in your system (see "compiling" part above). However you can download precompiled binaries (**unmaintained**) here:
-+ **Windows (Mingw32)** - <https://goo.gl/3AzZu2>
-+ **macOS High Sierra (clang)** - <https://goo.gl/oeTA15>
-+ **DOS/DOSBOX (djgpp)** - <https://goo.gl/NdztRB>
++ **Windows (Mingw32)** - <https://goo.gl/3AzZu2> (v0.1) 
++ **macOS High Sierra (clang)** - <https://goo.gl/oeTA15> (v0.1)
++ **DOS/DOSBOX (djgpp)** - <https://goo.gl/NdztRB> (v0.1)
 
 # more screenshot
 ![](https://drive.google.com/uc?id=143BAvDgNTuEiYN8SP24b5y-AzvZz6Zm3)
