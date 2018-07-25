@@ -84,9 +84,9 @@ int main(int argc, char **argv) {
 	char *s=malloc(sizeof(char) * _BUFFER_);
 	int l=0;
 	
-	while (1) {
+	while (!feof(f)) {
 		s[l]=fgetc(f);
-		if (s[l]=='\x0d'||s[l]=='\x0a') 
+		if (s[l]=='\x0d'||s[l]=='\x0a'||feof(f)) 
 		{
 			s[l]='\0'; 
 			break;
