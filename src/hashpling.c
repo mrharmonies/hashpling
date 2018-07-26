@@ -67,12 +67,8 @@ int main(int argc, char **argv) {
 
 	if(argc>1) {
 		for (i=2; i<argc; i++) {
-      snprintf(catopt,BUFFER," \"%s\"",argv[i]);
-      strncat(optionstr,catopt,BUFFER);
-      /*
-			strcat(optionstr," \"");
-			strncat(optionstr,argv[i],BUFFER);
-			strcat(optionstr,"\"");*/
+      			snprintf(catopt,BUFFER," \"%s\"",argv[i]);
+      			strncat(optionstr,catopt,BUFFER);
 		}
 	}
 
@@ -103,8 +99,7 @@ int main(int argc, char **argv) {
 	if(s[0]=='#' && s[1]=='!') {
     snprintf(launcher,BUFFER,"%s",s+2);
 		snprintf(cmd,BUFFER,"%s \"%s\"%s",launcher,argv[1],optionstr);
-		//return system(cmd);
-    printf("cmd>%s<\n",cmd);
+		return system(cmd);
 	} else {
 		fprintf(stderr,"%s: File \"%s\" is not in shebang format.\n",argv[0],argv[1]);
 		return 1;
