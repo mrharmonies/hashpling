@@ -62,16 +62,18 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
-	char optionstr[BUFFER];
+	char catopt[BUFFER], optionstr[BUFFER];
 	int i;
 
 	if(argc>1) {
 		for (i=2; i<argc; i++) {
+      snprintf(catopt,BUFFER," \"%s\"",argv[i]);
+      strncat(optionstr,catopt,BUFFER);
+      /*
 			strcat(optionstr," \"");
 			strncat(optionstr,argv[i],BUFFER);
-			strcat(optionstr,"\"");
+			strcat(optionstr,"\"");*/
 		}
-		snprintf(optionstr,BUFFER,"%s",optionstr);
 	}
 
 	f=fopen(argv[1],"r");
@@ -99,9 +101,10 @@ int main(int argc, char **argv) {
 	char cmd[BUFFER];
 
 	if(s[0]=='#' && s[1]=='!') {
-		strncpy(launcher,s+2,strlen(s));
+    snprintf(launcher,BUFFER,"%s",s+2);
 		snprintf(cmd,BUFFER,"%s \"%s\"%s",launcher,argv[1],optionstr);
-		return system(cmd);
+		//return system(cmd);
+    printf("cmd>%s<\n",cmd);
 	} else {
 		fprintf(stderr,"%s: File \"%s\" is not in shebang format.\n",argv[0],argv[1]);
 		return 1;
