@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define HPVERSION "0.9"
+#define HPVERSION "0.9.1"
 
 #define BUFFER 800*sizeof(char)
 
@@ -30,25 +30,28 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	if (!strcmp(argv[1],"-v")) {
-		printf("Hashpling v%s.\n\nMade with love by Muhamad Khalid Muzappa Yakub. For license info, execute using '-l' option\n",HPVERSION);
-		return 0;
-	}
-
-	if (!strcmp(argv[1],"-l")) {
-		printf("Copyright (C) 2018 Mohd Kholid Yaacob (mrharmonies.blogspot.com)\n\n");
-		printf("This source is free software; you can redistribute it and/or modify it under\nthe terms of the GNU General Public License as published by the Free\nSoftware Foundation; either version 2 of the License, or (at your option)\nany later version.\n\n");
-		printf("This code is distributed in the hope that it will be useful, but WITHOUT ANY\nWARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS\nFOR A PARTICULAR PURPOSE.  See the GNU General Public License for more\ndetails.\n\n");
-		printf("A copy of the GNU General Public License is available on the World Wide Web\nat <http://www.gnu.org/copyleft/gpl.html>. You can also obtain it by writing\nto the Free Software Foundation, Inc., 51 Franklin Street - Fifth Floor,\nBoston, MA 02110-1335, USA.\n");
-		return 0;
-	}
-
-	if (!strcmp(argv[1],"-h")) {
-		printf("Hashpling v%s.\n\n",HPVERSION);
-		printf("To use, run \"%s <filename> [arg1 arg2 ..]\" in command line.\n\n",argv[0]);
-		printf("Shebang format is #!(interpreter) [interpreter arguments]. The (interpreter)\ncan be absolute path to an interpreter or just an interpreter name if its\nalready in PATH variable.\n");
-		return 0;
-	}
+  if (argv[1][0]=='-'){
+    if (argv[1][1]=='v'){
+      printf("Hashpling v%s.\n\nMade with love by Muhamad Khalid Muzappa Yakub. For license info, execute using '-l' option\n",HPVERSION);
+		  return 0;
+    }
+    else if (argv[1][1]=='l'){
+		  printf("Copyright (C) 2018 Mohd Kholid Yaacob (mrharmonies.blogspot.com)\n\n");
+		  printf("This source is free software; you can redistribute it and/or modify it under\nthe terms of the GNU General Public License as published by the Free\nSoftware Foundation; either version 2 of the License, or (at your option)\nany later version.\n\n");
+		  printf("This code is distributed in the hope that it will be useful, but WITHOUT ANY\nWARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS\nFOR A PARTICULAR PURPOSE.  See the GNU General Public License for more\ndetails.\n\n");
+		  printf("A copy of the GNU General Public License is available on the World Wide Web\nat <http://www.gnu.org/copyleft/gpl.html>. You can also obtain it by writing\nto the Free Software Foundation, Inc., 51 Franklin Street - Fifth Floor,\nBoston, MA 02110-1335, USA.\n");
+		  return 0;
+    }
+    else if (argv[1][1]=='h'){
+      printf("Hashpling v%s.\n\n",HPVERSION);
+		  printf("To use, run \"%s <filename> [arg1 arg2 ..]\" in command line.\n\n",argv[0]);
+		  printf("Shebang format is #!(interpreter) [interpreter arguments]. The (interpreter)\ncan be absolute path to an interpreter or just an interpreter name if its\nalready in PATH variable.\n");
+		  return 0;
+    } else {
+      fprintf(stderr,"%s: Unrecognized option \"%s\".\n",argv[0],argv[1]);
+      return 1;
+    }
+  }
 
 	char optionstr[BUFFER];
 	int i;
