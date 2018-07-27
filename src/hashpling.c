@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define HPVERSION "0.8"
+#define HPVERSION "0.9"
 
 #define BUFFER 800*sizeof(char)
 
@@ -85,7 +85,7 @@ int main(int argc, char **argv) {
 
 	if(s[0]=='#' && s[1]=='!') {
 		snprintf(launcher,BUFFER,"%s",s+2);
-		snprintf(cmd,BUFFER,"%s \"%s\"%s",launcher,argv[1],optionstr);
+		snprintf(cmd,BUFFER,"%s \"%s\" %s",launcher,argv[1],optionstr);
 		return system(cmd);
 	} else {
 		fprintf(stderr,"%s: File \"%s\" is not in shebang format.\n",argv[0],argv[1]);
