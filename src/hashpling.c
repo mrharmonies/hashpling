@@ -17,9 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define HPVERSION "0.9.1"
-
-#define BUFFER 800*sizeof(char)
+#define HPVERSION "0.9"
 
 int main(int argc, char **argv) {
 	FILE *f;
@@ -52,12 +50,11 @@ int main(int argc, char **argv) {
     }
   }
 
-	char optionstr[BUFFER];
+	char optionstr[BUFSIZ]={ 0 };
 	int i;
-
 	if(argc>1) {
 		for (i=2; i<argc; i++) {
-			snprintf(optionstr,BUFFER,"%s \"%s\"",optionstr,argv[i]);
+			snprintf(optionstr,BUFSIZ,"%s \"%s\"",optionstr,argv[i]);
 		}
 	}
 
@@ -67,10 +64,10 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	char s[BUFFER];
+	char s[BUFSIZ]={ 0 };
 	int l=0;
 
-	fgets(s,BUFFER,f);
+	fgets(s,BUFSIZ,f);
 
 	while (1) {
 		if (s[l]=='\r'||s[l]=='\n'||s[l]==EOF) {
@@ -82,12 +79,12 @@ int main(int argc, char **argv) {
 
 	fclose(f);
 
-	char launcher[BUFFER];
-	char cmd[BUFFER];
+	char launcher[BUFSIZ]={ 0 };
+	char cmd[BUFSIZ]={ 0 };
 
 	if(s[0]=='#' && s[1]=='!') {
-		snprintf(launcher,BUFFER,"%s",s+2);
-		snprintf(cmd,BUFFER,"%s \"%s\" %s",launcher,argv[1],optionstr);
+		snprintf(launcher,BUFSIZ,"%s",s+2);
+		snprintf(cmd,BUFSIZ,"%s \"%s\" %s",launcher,argv[1],optionstr);
 		return system(cmd);
 	} else {
 		fprintf(stderr,"%s: File \"%s\" is not in shebang format.\n",argv[0],argv[1]);
