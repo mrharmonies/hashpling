@@ -9,26 +9,26 @@ Just add **#!** followed by **path to interpreter** (works with many famous inte
 Tip: If you use windows, just add '.hp' file extension at the end of your filename and associate the extension with hashpling program. So later when you double click the dot-hp file, it will execute automatically. No execution permission is required. 
 
 Example using python interpreter located in "**c:\python\bin\python32**", append the path right after shebang, like this "**#!c:\python\bin\python32.exe**":
-```
+```python
 #!c:\python\bin\python32.exe
 kmh = int(raw_input("Enter km/h: "))
 mph =  0.6214 * kmh
 print "Speed:", kmh, "KM/H = ", mph, "MPH"
 ```
 If the interpreter in already in the folder registered in **PATH** environment variable, then full path is not required, in this case, just use "**#!perl**":
-```
+```perl
 #!perl
 print "Hello, world!\n";
 print qq=Did you say "Hello?"\n=;
 ```
 Using hashpling on macOS, linux or other UNIX variant? Shebang is already in the heart of every UNIX system, but just to show hashpling works everywhere, heres another example that works on UNIX-like platform:
-```
+```python
 #!/usr/bin/python
 friends = ['john', 'pat', 'gary', 'michael']
 for i, name in enumerate(friends):
     print "iteration {iteration} is {name}".format(iteration=i, name=name)
 ```
-```
+```pascal
 #!instantfpc
 // instantfpc folder is registered in PATH environment variables, so full path is not required.
 program params;
@@ -39,7 +39,7 @@ begin
 end.
 ```
 Even using '**/usr/bin/env**' works!
-```
+```bash
 #!/usr/bin/env bash
 echo "Hello world"
 ```
@@ -51,7 +51,7 @@ My surname is hepburn
 Total number of arguments is 2
 ```
 and here is the bash script (namearg.sh)
-```
+```bash
 #!/bin/bash
 # example of using arguments to a script
 echo "My first name is $1"
@@ -63,7 +63,7 @@ Hashpling also forward **exit code** from the interpreter. So if you exit with c
 ![](https://drive.google.com/uc?id=1Q28gQPuiVlhdFpBzMGR9VTxNswIHkhPg)
 
 Hashpling can also **run on a http server**. In this example I'm using **[tinyweb](https://www.ritlabs.com/en/products/tinyweb/)**. After placing this Lua script (named x.hp) in "**cgi-bin**":
-```
+```lua
 #!C:\www\root\cgi-bin\lua53
 
 print("Content-type: text/html\n\n");
