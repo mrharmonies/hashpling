@@ -1,5 +1,5 @@
 # hashpling
-Hashpling allows you to **use shebang on non-unix platform**, (eg. on Windows 10, Windows XP or on MSDOS). For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)). Hashpling is **very fast** and **portable** because it is written in **C** and following **ANSI C** language dialect. 
+Hashpling allows you to **use shebang on non-unix platform**, (eg. on Windows 10, Windows XP, MSDOS, or Haiku). For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)). Hashpling is **very fast** and **portable** because it is written in **C** and following **ANSI C** language dialect. 
 
 # usage
 Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, gnuplot, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. To execute the code, just run **'hp.exe *filename*'** on command line.
