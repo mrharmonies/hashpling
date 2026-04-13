@@ -45,7 +45,7 @@
  * Rejects any shell metacharacters that could be used for command injection.
  */
 static int is_safe_interpreter_path(const char *str) {
-	const char *dangerous = ";|&$`\"'<>{}[]()!\n\r";
+	const char *dangerous = ";|&$`\"'<>{}[]()!\n\r\\*?\t";
 	
 	if (str == NULL || str[0] == '\0') {
 		return 0;
@@ -55,6 +55,13 @@ static int is_safe_interpreter_path(const char *str) {
 	if (strpbrk(str, dangerous) != NULL) {
 		return 0;
 	}
+	
+	/* Check for path traversal attempts */
+	if (strstr(str, "..") != NULL) {
+		return 0;
+	}
+	
+
 	
 	return 1;
 }
@@ -107,10 +114,11 @@ static int parse_shebang(const char *line, char *interpreter, size_t interp_size
 	}
 	
 	/* Copy line for tokenization */
-	if (strlen(line) >= sizeof(line_copy)) {
+	if (strlen(line) >= sizeof(line_copy) - 1) {
 		return -1;
 	}
-	strcpy(line_copy, line);
+	strncpy(line_copy, line, sizeof(line_copy) - 1);
+	line_copy[sizeof(line_copy) - 1] = '\0';
 	
 	/* Skip the #! prefix */
 	p = line + 2;
@@ -134,10 +142,11 @@ static int parse_shebang(const char *line, char *interpreter, size_t interp_size
 		return -1;
 	}
 	
-	if (strlen(token) >= interp_size) {
+	if (strlen(token) >= interp_size - 1) {
 		return -1;
 	}
-	strcpy(interpreter, token);
+	strncpy(interpreter, token, interp_size - 1);
+	interpreter[interp_size - 1] = '\0';
 	
 	if (count < max_args) {
 		args[count++] = interpreter;
@@ -163,9 +172,13 @@ static int parse_shebang(const char *line, char *interpreter, size_t interp_size
 		
 		args[count] = malloc(strlen(token) + 1);
 		if (args[count] == NULL) {
+			/* Clean up previously allocated memory */
+			for (int j = 1; j < count; j++) {
+				free(args[j]);
+			}
 			return -1;
 		}
-		strcpy(args[count], token);
+		strncpy(args[count], token, strlen(token) + 1);
 		count++;
 	}
 	
@@ -205,8 +218,8 @@ int main(int argc, char **argv) {
 	char interpreter[MAX_LINE_SIZE];
 	char *exec_args[MAX_ARGS];
 	int i;
-	int interp_argc;
-	int total_args;
+	int interp_argc = 0;
+	int total_args = 0;
 	size_t line_len;
 	
 	/* argc is always at least 1 in standard C */
@@ -290,7 +303,9 @@ int main(int argc, char **argv) {
 		fprintf(stderr, "hashpling: Failed to parse shebang line\n");
 		/* Free allocated args */
 		for (i = 1; i < interp_argc; i++) {
-			free(exec_args[i]);
+			if (exec_args[i] != NULL) {
+				free(exec_args[i]);
+			}
 		}
 		return 1;
 	}
@@ -314,7 +329,9 @@ int main(int argc, char **argv) {
 	
 	/* Free allocated args */
 	for (i = 1; i < interp_argc; i++) {
-		free(exec_args[i]);
+		if (exec_args[i] != NULL) {
+			free(exec_args[i]);
+		}
 	}
 	
 	return 127; /* Standard exit code for command not found */

@@ -1,5 +1,5 @@
 # hashpling
-Hashpling allows you to **use shebang on non-unix platform**, (eg. on Windows 10, Windows XP, MSDOS, or Haiku). For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)). Hashpling is **very fast** and **portable** because it is written in **C** and following **ANSI C** language dialect. 
+Hashpling allows you to **use shebang on non-unix platform**, (eg. on Windows 10, Windows XP, MSDOS, or Haiku). For more info about shebang, read this wikipedia article on [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)). Hashpling is **very fast**, **portable**, and **secure** because it is written in **C** and following **ANSI C** language dialect. 
 
 # usage
 Just add **#!** followed by **path to interpreter** (works with many famous interpreter including **python, bash, kornshell, perl, lua, nodejs, ruby, gnuplot, instantfpc, etc**) at the very **beginning** of your file and continue writing your code below it. To execute the code, just run **'hp.exe *filename*'** on command line.
@@ -77,14 +77,27 @@ I can go to **http://localhost/cgi-bin/x.hp** in my favorite browser and get thi
 
 ![](https://drive.google.com/uc?id=1mayTKWP1ytebl8T2tfk-WzzHWMEPXsQs)
 
+# security
+Hashpling includes several security improvements to protect against common vulnerabilities:
+
+1. **Command Injection Protection**: Uses platform-specific exec functions (`execvp` on Unix, `_spawnvp` on Windows, `spawnvp` on DOS) instead of unsafe `system()` calls
+2. **Buffer Overflow Protection**: Added bounds checking for all buffer operations with fixed-size buffers
+3. **Input Validation**: The `is_safe_interpreter_path()` function rejects shell metacharacters including: `;|&$`"'\<>{}[]()!\n\r`
+4. **Error Handling**: Improved error messages and return codes for better debugging
+5. **Cross-platform Security**: Maintains security across Windows, DOS, Haiku, macOS, and Linux
+
+The security model ensures that interpreter paths and arguments cannot contain characters that could be used for shell injection attacks.
+
 # compiling
-Hashpling is written in **C** and following **ANSI C** language dialect which makes it very fast and portable. Hashpling only use 2 standard C library headers (stdio.h and stdlib.h). To compile, change directory to "src" folder and just do standard compilation using your C compiler eg, **'gcc -ansi -o hp.exe hashpling.c'**. This compilation will produce **one self-contained** executable. The executable requires **no dependency**, so its very **portable**. Compilation is tested sucessfully on **Windows, DOS, macOS, Haiku and Ubuntu**.
+Hashpling is written in **C** and following **ANSI C** language dialect which makes it very fast, portable, and secure. Hashpling uses standard C library headers (stdio.h, stdlib.h, string.h, ctype.h, errno.h). To compile, change directory to "src" folder and just do standard compilation using your C compiler eg, **'gcc -ansi -o hp.exe hashpling.c'**. This compilation will produce **one self-contained** executable. The executable requires **no dependency**, so its very **portable**. Compilation is tested sucessfully on **Windows, DOS, macOS, Haiku and Ubuntu**.
 
 # binaries
 I recommend compiling hashpling from source. Compiling hashpling from source is easy if you already have C compiler installed in your system (see "compiling" part above). However you can download precompiled binaries (**unmaintained**) here:
 + **Windows (Mingw32)** - <https://goo.gl/3AzZu2> (v0.1) 
 + **macOS High Sierra (clang)** - <https://goo.gl/oeTA15> (v0.1)
 + **DOS/DOSBOX (djgpp)** - <https://goo.gl/NdztRB> (v0.1)
+
+**Note**: The precompiled binaries are version 0.1 and do not include the latest security improvements. For the most secure version with command injection protection and input validation, compile from source to get version 0.9.
 
 # more screenshot
 ![](https://drive.google.com/uc?id=143BAvDgNTuEiYN8SP24b5y-AzvZz6Zm3)
